@@ -1,20 +1,40 @@
 @import "tailwindcss";
 
 @theme {
+  --color-background: #121212;
+  --color-foreground: #f4f4f5;
+  --color-card: #18181b;
+  --color-card-foreground: #f4f4f5;
+  --color-popover: #18181b;
+  --color-popover-foreground: #f4f4f5;
+  --color-primary: #3b82f6;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #27272a;
+  --color-secondary-foreground: #f4f4f5;
+  --color-muted: #27272a;
+  --color-muted-foreground: #a1a1aa;
+  --color-accent: #27272a;
+  --color-accent-foreground: #f4f4f5;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #262626;
+  --color-input: #262626;
+  --color-ring: #3b82f6;
+
   --color-dark-bg: #121212;
   --color-dark-surface: #18181b;
   --color-dark-surface-elevated: #202024;
   --color-dark-surface-hover: #27272a;
-  --color-dark-border: #2e2e32;
-  --color-dark-border-subtle: #242428;
+  --color-dark-border: #262626;
+  --color-dark-border-subtle: #1f1f23;
   
-  --color-brand-blue: #0056d2;
-  --color-brand-blue-hover: #0045a8;
-  --color-brand-blue-subtle: #002b66;
+  --color-brand-blue: #2563eb;
+  --color-brand-blue-hover: #1d4ed8;
+  --color-brand-blue-subtle: #1e3a8a;
 
-  --color-autonomy-green: #22c55e;
-  --color-autonomy-yellow: #eab308;
-  --color-autonomy-red: #ef4444;
+  --color-health-green: #10b981;
+  --color-health-yellow: #f59e0b;
+  --color-health-red: #ef4444;
 }
 
 :root {
@@ -25,7 +45,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: var(--color-dark-bg);
+  background-color: #121212;
   color: #f4f4f5;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -49,4 +69,28 @@ html, body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #3f3f46;
+}
+
+/* Otimização de Impressão para o Termo Formal de Rescisão */
+@media print {
+  header, nav, button, .no-print {
+    display: none !important;
+  }
+  body, main {
+    background: #ffffff !important;
+    color: #09090b !important;
+  }
+  .print-only-container {
+    background: #ffffff !important;
+    color: #09090b !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+  .print-only-container * {
+    color: #09090b !important;
+    border-color: #e4e4e7 !important;
+  }
 }

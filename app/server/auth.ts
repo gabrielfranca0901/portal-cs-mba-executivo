@@ -14,20 +14,24 @@ export const checkAccountExists = createServerFn({ method: 'POST' })
   })
   .handler(async ({ data: email }): Promise<CheckAccountResult> => {
     if (!email || !email.includes('@')) {
-      return { exists: false, message: 'O analista deve inserir um formato válido de e-mail institucional corporativo.' };
+      return { exists: false, message: 'O operador de CS deve inserir um formato válido de e-mail corporativo.' };
     }
 
-    // Domínios autorizados do ecossistema Anhanguera / UNIPDS
+    // Domínios autorizados do ecossistema MBA Executivo e Educação Corporativa
     const isDomainAllowed = 
+      email.endsWith('@mba.edu.br') || 
+      email.endsWith('@cs.mba.br') || 
       email.endsWith('@anhanguera.edu.br') || 
       email.endsWith('@unipds.com.br') || 
       email.endsWith('@kroton.com.br') ||
-      email.includes('demo');
+      email.includes('demo') ||
+      email.includes('csm') ||
+      email.includes('admin');
 
     if (!isDomainAllowed) {
       return { 
         exists: false, 
-        message: 'Acesso permitido apenas para e-mails corporativos dos domínios UNIPDS e Anhanguera.' 
+        message: 'Acesso restrito a e-mails institucionais da equipe de CS e Operações do MBA Executivo.' 
       };
     }
 
@@ -41,12 +45,12 @@ export const checkAccountExists = createServerFn({ method: 'POST' })
 
       if (error || !data) {
         // Se as credenciais do Supabase ainda não estiverem configuradas localmente,
-        // permite autenticação em modo tolerante
+        // permite autenticação em modo tolerante/demo
         return { exists: true, isDemoAllowed: true };
       }
 
       const found = data.users.some((u) => u.email?.toLowerCase() === email);
-      return { exists: found || email.includes('demo'), isDemoAllowed: true };
+      return { exists: found || email.includes('demo') || email.includes('csm'), isDemoAllowed: true };
     } catch {
       return { exists: true, isDemoAllowed: true };
     }

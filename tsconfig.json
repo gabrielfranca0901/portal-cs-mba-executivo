@@ -13,8 +13,10 @@
     "types": ["vite/client", "node"],
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./app/*"]
+      "~/*": ["./app/*"],
+      "@/*": ["./app/*"],
+      "src/*": ["./app/*"]
     }
   },
-  "include": ["app", "vite.config.ts", "env.d.ts"]
+  "include": ["app", "src", "vite.config.ts", "env.d.ts"]
 }

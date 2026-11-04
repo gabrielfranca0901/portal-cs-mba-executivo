@@ -1,6 +1,7 @@
 {
-  "name": "unipds-portal-pop",
+  "name": "portal-cs-operacoes-mba",
   "version": "2.0.0",
+  "description": "Portal de Customer Success & Operações — MBA Executivo (Versão 2.0 | 2026)",
   "private": true,
   "type": "module",
   "scripts": {

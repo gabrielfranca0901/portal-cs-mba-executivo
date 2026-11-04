@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedCalculadoraCancelamentoRouteImport } from './routes/_authenticated.calculadora-cancelamento'
 import { Route as AuthenticatedGuiaRouteImport } from './routes/_authenticated.guia'
 import { Route as AuthenticatedPortalRouteImport } from './routes/_authenticated.portal'
 
@@ -29,6 +30,12 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedCalculadoraCancelamentoRoute =
+  AuthenticatedCalculadoraCancelamentoRouteImport.update({
+    id: '/calculadora-cancelamento',
+    path: '/calculadora-cancelamento',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedGuiaRoute = AuthenticatedGuiaRouteImport.update({
   id: '/guia',
   path: '/guia',
@@ -43,12 +50,14 @@ const AuthenticatedPortalRoute = AuthenticatedPortalRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/calculadora-cancelamento': typeof AuthenticatedCalculadoraCancelamentoRoute
   '/guia': typeof AuthenticatedGuiaRoute
   '/portal': typeof AuthenticatedPortalRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/calculadora-cancelamento': typeof AuthenticatedCalculadoraCancelamentoRoute
   '/guia': typeof AuthenticatedGuiaRoute
   '/portal': typeof AuthenticatedPortalRoute
 }
@@ -57,19 +66,21 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/auth': typeof AuthRoute
+  '/_authenticated/calculadora-cancelamento': typeof AuthenticatedCalculadoraCancelamentoRoute
   '/_authenticated/guia': typeof AuthenticatedGuiaRoute
   '/_authenticated/portal': typeof AuthenticatedPortalRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/guia' | '/portal'
+  fullPaths: '/' | '/auth' | '/calculadora-cancelamento' | '/guia' | '/portal'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/guia' | '/portal'
+  to: '/' | '/auth' | '/calculadora-cancelamento' | '/guia' | '/portal'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
+    | '/_authenticated/calculadora-cancelamento'
     | '/_authenticated/guia'
     | '/_authenticated/portal'
   fileRoutesById: FileRoutesById
@@ -103,6 +114,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/calculadora-cancelamento': {
+      id: '/_authenticated/calculadora-cancelamento'
+      path: '/calculadora-cancelamento'
+      fullPath: '/calculadora-cancelamento'
+      preLoaderRoute: typeof AuthenticatedCalculadoraCancelamentoRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/guia': {
       id: '/_authenticated/guia'
       path: '/guia'
@@ -121,11 +139,14 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteChildren {
+  AuthenticatedCalculadoraCancelamentoRoute: typeof AuthenticatedCalculadoraCancelamentoRoute
   AuthenticatedGuiaRoute: typeof AuthenticatedGuiaRoute
   AuthenticatedPortalRoute: typeof AuthenticatedPortalRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedCalculadoraCancelamentoRoute:
+    AuthenticatedCalculadoraCancelamentoRoute,
   AuthenticatedGuiaRoute: AuthenticatedGuiaRoute,
   AuthenticatedPortalRoute: AuthenticatedPortalRoute,
 }

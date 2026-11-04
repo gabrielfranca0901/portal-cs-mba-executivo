@@ -7,8 +7,8 @@ export const Route = createRootRoute({
     meta: [
       { charSet: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'Portal POP & Guia de Atendimento | UNIPDS & Anhanguera' },
-      { name: 'description', content: 'Base de Conhecimento Operacional e Guia de Atendimento ao Aluno UNIPDS & Anhanguera' },
+      { title: 'Portal de Customer Success & Operações — MBA Executivo (v2.0 | 2026)' },
+      { name: 'description', content: 'Plataforma oficial de CS, Procedimentos Operacionais Padrão, Guia de Saúde e Calculadora de Rescisão Contratual do MBA Executivo.' },
     ],
     links: [
       { rel: 'stylesheet', href: appCss },
@@ -24,7 +24,7 @@ function RootComponent() {
       <head>
         <HeadContent />
       </head>
-      <body className="min-h-screen bg-[var(--color-dark-bg)] text-zinc-100 antialiased selection:bg-blue-600/30 selection:text-blue-200">
+      <body className="min-h-screen bg-[#121212] text-zinc-100 antialiased selection:bg-blue-600/30 selection:text-blue-200">
         <Outlet />
         <Toaster
           position="top-right"
@@ -34,7 +34,7 @@ function RootComponent() {
           toastOptions={{
             style: {
               background: '#18181b',
-              border: '1px solid #2e2e32',
+              border: '1px solid #262626',
               color: '#f4f4f5',
             },
           }}
