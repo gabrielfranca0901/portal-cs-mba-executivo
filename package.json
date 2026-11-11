@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "generate-routes": "node scripts/generate-routes.js",
+    "seed": "node scripts/seed.mjs",
     "dev": "npm run generate-routes && vite",
     "build": "npm run generate-routes && vite build",
     "preview": "vite preview"
